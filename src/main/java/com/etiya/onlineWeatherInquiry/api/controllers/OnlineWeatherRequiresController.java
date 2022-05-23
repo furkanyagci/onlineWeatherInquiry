@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/onlineweatherinquires")
+@CrossOrigin
 public class OnlineWeatherRequiresController {
     //private final OnlineWeatherInquireManager onlineWeatherInquireManager;
     private OnlineWeatherInquireService onlineWeatherInquireService;

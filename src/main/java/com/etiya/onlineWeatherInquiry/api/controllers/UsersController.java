@@ -11,11 +11,11 @@ import com.etiya.onlineWeatherInquiry.core.utilities.results.DataResult;
 import com.etiya.onlineWeatherInquiry.core.utilities.results.Result;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController//
 @RequestMapping("/api/users")
+@CrossOrigin
 public class UsersController {
 
     private UserService userService;
