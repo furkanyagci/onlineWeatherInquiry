@@ -15,6 +15,7 @@ import com.etiya.onlineWeatherInquiry.dataAccess.abstracts.UserRepository;
 import com.etiya.onlineWeatherInquiry.entities.User;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -51,8 +52,9 @@ public class UserManager implements UserService {
     @Override
     public Result add(CreateUserRequest createUserRequest) {
         User user =this.modelMapperService.forRequest().map(createUserRequest, User.class);
+        user.setCreateDate(LocalDateTime.now());
         this.userRepository.save(user);
-        return new SuccessResult(BusinessMessages.UserMessages.USER_ADDED);
+        return new SuccessDataResult<>(user.getId(), BusinessMessages.UserMessages.USER_ADDED);
     }
 
     @Override

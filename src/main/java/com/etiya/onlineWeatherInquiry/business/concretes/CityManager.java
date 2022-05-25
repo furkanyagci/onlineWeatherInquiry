@@ -14,6 +14,7 @@ import com.etiya.onlineWeatherInquiry.dataAccess.abstracts.CityRepository;
 import com.etiya.onlineWeatherInquiry.entities.City;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,8 +54,9 @@ public class CityManager implements CityService {
         createCityRequest.setCityName(createCityRequest.getCityName().toLowerCase());
         checkIfBrandNameExists(createCityRequest.getCityName());
         City city = this.modelMapperService.forRequest().map(createCityRequest,City.class);
+        city.setCreateDate(LocalDateTime.now());
         this.cityRepository.save(city);
-        return new SuccessResult(BusinessMessages.CityMessages.CITY_ADDED);
+        return new SuccessDataResult<>(city.getId(), BusinessMessages.CityMessages.CITY_ADDED);
     }
 
     @Override
