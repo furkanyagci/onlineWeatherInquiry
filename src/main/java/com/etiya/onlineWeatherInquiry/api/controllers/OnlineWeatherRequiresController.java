@@ -1,19 +1,16 @@
 package com.etiya.onlineWeatherInquiry.api.controllers;
 
 import com.etiya.onlineWeatherInquiry.business.abstracts.OnlineWeatherInquireService;
-import com.etiya.onlineWeatherInquiry.business.responses.OnlineWeatherInquireResponses.ListOnlineWeatherInquireDto;
-import com.etiya.onlineWeatherInquiry.core.utilities.results.DataResult;
 import com.etiya.onlineWeatherInquiry.core.utilities.results.Result;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/onlineweatherinquires")
-@CrossOrigin
+@CrossOrigin("*")
 public class OnlineWeatherRequiresController {
     //private final OnlineWeatherInquireManager onlineWeatherInquireManager;
     private OnlineWeatherInquireService onlineWeatherInquireService;
@@ -27,6 +24,7 @@ public class OnlineWeatherRequiresController {
         return this.onlineWeatherInquireService.getAll();
     }*/
 
+    //@CrossOrigin("*")
     @GetMapping("/citynameweatherinquiry")
     public ResponseEntity<Result> getByCityNameWeatherInquiry(@RequestParam String city,String userName){//@PathVariable
         return ResponseEntity.ok(this.onlineWeatherInquireService.getByCityNameWeatherInquiry(city,userName));
