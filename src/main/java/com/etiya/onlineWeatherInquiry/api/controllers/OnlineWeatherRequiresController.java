@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/api/onlineweatherinquires")
-@CrossOrigin("*")
+@CrossOrigin()
 public class OnlineWeatherRequiresController {
     //private final OnlineWeatherInquireManager onlineWeatherInquireManager;
     private OnlineWeatherInquireService onlineWeatherInquireService;
@@ -24,7 +24,6 @@ public class OnlineWeatherRequiresController {
         return this.onlineWeatherInquireService.getAll();
     }*/
 
-    //@CrossOrigin("*")
     @GetMapping("/citynameweatherinquiry")
     public ResponseEntity<Result> getByCityNameWeatherInquiry(@RequestParam String city,String userName){//@PathVariable
         return ResponseEntity.ok(this.onlineWeatherInquireService.getByCityNameWeatherInquiry(city,userName));
