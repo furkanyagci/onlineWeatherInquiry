@@ -24,7 +24,7 @@ public class OnlineWeatherRequiresController {
         return this.onlineWeatherInquireService.getAll();
     }*/
 
-    @GetMapping("/citynameweatherinquiry")
+    @PostMapping("/citynameweatherinquiry")
     public ResponseEntity<Result> getByCityNameWeatherInquiry(@RequestParam String city,String userName){//@PathVariable
         return ResponseEntity.ok(this.onlineWeatherInquireService.getByCityNameWeatherInquiry(city,userName));
     }
