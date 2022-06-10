@@ -52,7 +52,7 @@ public class CityManager implements CityService {
     @Override
     public Result add(CreateCityRequest createCityRequest) {
         createCityRequest.setCityName(createCityRequest.getCityName().toLowerCase());
-        checkIfBrandNameExists(createCityRequest.getCityName());
+        checkIfCityNameExists(createCityRequest.getCityName());
         City city = this.modelMapperService.forRequest().map(createCityRequest,City.class);
         city.setCreateDate(LocalDateTime.now());
         this.cityRepository.save(city);
@@ -72,7 +72,7 @@ public class CityManager implements CityService {
         return new SuccessResult(BusinessMessages.CityMessages.CITY_UPDATED);
     }
 
-    private void checkIfBrandNameExists(String cityName) {
+    private void checkIfCityNameExists(String cityName) {
         if (this.cityRepository.existsByCityNameIgnoreCase(cityName)) {
             throw new BusinessException(BusinessMessages.CityMessages.CITY_ALREADY_EXISTS);
         }

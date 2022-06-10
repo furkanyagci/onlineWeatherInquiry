@@ -10,6 +10,7 @@ public class BusinessMessages {
         public static final String LOGIN_SUCCESSFUL="Kullanıcı girişi başarılı";
         public static final String USER_NOT_FOUND="Kullanıcı bulunamadı";
         public static final String NOT_AUTHORIZED="Kullanıcı şifresi değiştirmek için yetkiniz yok";
+        public static final String USERNAME_IS_USED="Kullanıcı adı kullanılıyor";
     }
 
     public class CityMessages{

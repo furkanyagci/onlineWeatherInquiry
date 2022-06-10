@@ -51,6 +51,7 @@ public class UserManager implements UserService {
 
     @Override
     public Result add(CreateUserRequest createUserRequest) {
+        checkIfUserNameExists(createUserRequest.getUserName());
         User user =this.modelMapperService.forRequest().map(createUserRequest, User.class);
         user.setCreateDate(LocalDateTime.now());
         this.userRepository.save(user);
@@ -91,6 +92,12 @@ public class UserManager implements UserService {
         Optional<User> user=this.userRepository.findById(updateUserRequest.getId());
         if (!updateUserRequest.getPassword().equals(user.get().getPassword())) {
             throw new BusinessException(BusinessMessages.UserMessages.NOT_AUTHORIZED);
+        }
+    }
+
+    private void checkIfUserNameExists(String userName) {
+        if (this.userRepository.existsByUserNameIgnoreCase(userName)) {
+            throw new BusinessException(BusinessMessages.UserMessages.USERNAME_IS_USED);
         }
     }
 }
